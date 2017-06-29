@@ -9,8 +9,8 @@ I started with Immutable Value Objects, there are two easy Value Objects for now
 Things learned:
 
 - I'm more confident with my objects now.
-- Looks easy to break your app with side effects.
-- Not that hard to code more things in my app using immutability.
+- Looks hard to break your app with side effects.
+- Not that hard to code more things (not only Value Objects) in my app using immutability.
 - Really easy to test. That means, easy to do TDD while coding.
 - Can't say anything about refactoring for now.
 
