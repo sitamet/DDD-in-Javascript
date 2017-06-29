@@ -1,4 +1,4 @@
-# Immutable
+# DDD in Javascript
 
 ### Explanation
 
