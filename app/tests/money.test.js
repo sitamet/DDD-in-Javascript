@@ -2,6 +2,11 @@ import Currency from '../js/currency';
 import Money from '../js/money';
 
 describe('testing Money', () => {
+    test('creation of money without a currency as a param must throw an error', () => {
+        expect(() => { new Money(10, 'EUR'); }).toThrow(Error);
+        expect(() => { new Money(10, { isoCode: 'EUR' }); }).toThrow(Error);
+    });
+
     test('copied money should represent same value', () => {
         let aMoney = new Money(100, new Currency('USD'));
         let copiedMoney = Money.fromMoney(aMoney);

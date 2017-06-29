@@ -1,14 +1,22 @@
+let isoCode;
+
 function setIsoCode(anIsoCode) {
     if(!/^[A-Z]{3}$/.test(anIsoCode)) {
         throw Error('Bad ISO Code');
     }
 
-    this.isoCode = anIsoCode;
+    isoCode = anIsoCode;
 }
 
 export default class Currency {
     constructor(anIsoCode) {
-        setIsoCode.bind(this)(anIsoCode);
+        setIsoCode(anIsoCode);
+
+        this.isoCode = this.isoCode();
+    }
+
+    isoCode() {
+        return isoCode;
     }
 
     static fromCurrency(aCurrency) {

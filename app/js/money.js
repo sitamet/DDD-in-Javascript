@@ -1,15 +1,35 @@
+import Currency from './currency';
+
+let amount;
+let currency;
+
 function setAmount(anAmount) {
-    this.amount = anAmount;
+    amount = anAmount;
 }
 
 function setCurrency(aCurrency) {
-    this.currency = aCurrency;
+    if(!(aCurrency instanceof Currency)) {
+        throw Error('Argument must be an instance of Currency');
+    }
+
+    currency = aCurrency;
 }
 
 export default class Money {
     constructor(anAmount, aCurrency) {
-        setAmount.bind(this)(anAmount);
-        setCurrency.bind(this)(aCurrency);
+        setAmount(anAmount);
+        setCurrency(aCurrency);
+
+        this.amount = this.amount();
+        this.currency = this.currency();
+    }
+
+    amount() {
+        return amount;
+    }
+
+    currency() {
+        return currency;
     }
 
     static fromMoney(aMoney) {
