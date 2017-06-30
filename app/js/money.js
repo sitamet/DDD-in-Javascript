@@ -22,6 +22,8 @@ export default class Money {
 
         this.amount = this.amount();
         this.currency = this.currency();
+
+        Object.freeze(this);
     }
 
     amount() {
