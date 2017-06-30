@@ -8,8 +8,6 @@ function setIsoCode(anIsoCode) {
     isoCode = anIsoCode;
 }
 
-
-
 export default class Currency {
     constructor(anIsoCode) {
         setIsoCode(anIsoCode);
