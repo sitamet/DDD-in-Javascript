@@ -1,65 +1,48 @@
-import Currency from './currency';
+let money = {
+    isMoney: true,
 
-let amount;
-let currency;
+    amount: null,
+    currency: null,
 
-function setAmount(anAmount) {
-    amount = anAmount;
-}
-
-function setCurrency(aCurrency) {
-    if(!(aCurrency instanceof Currency)) {
-        throw Error('Argument must be an instance of Currency');
-    }
-
-    currency = aCurrency;
-}
-
-export default class Money {
-    constructor(anAmount, aCurrency) {
-        setAmount(anAmount);
-        setCurrency(aCurrency);
-
-        this.amount = this.amount();
-        this.currency = this.currency();
-
-        Object.freeze(this);
-    }
-
-    amount() {
-        return amount;
-    }
-
-    currency() {
-        return currency;
-    }
-
-    static fromMoney(aMoney) {
-        return new this(aMoney.amount, aMoney.currency);
-    }
-
-    static ofCurrency(aCurrency) {
-        return new this(0, aCurrency);
-    }
+    clonate() {
+        return createMoney({ amount: this.amount, currency: this.currency });
+    },
 
     increaseAmountBy(anAmount) {
-        return new this.constructor(this.amount + anAmount, this.currency);
-    }
+        return createMoney({ amount: this.amount + anAmount, currency: this.currency });
+    },
 
     changeCurrency(aCurrency) {
-        return new this.constructor(this.amount, aCurrency);
-    }
+        return createMoney({ amount: this.amount, currency: aCurrency });
+    },
 
     equals(money) {
         return money.currency.equals(this.currency) &&
-                money.amount === this.amount;
-    }
+            money.amount === this.amount;
+    },
 
     add(money) {
-        if(!money.currency.equals(this.currency)) {
+        if (!money.currency.equals(this.currency)) {
             throw Error('Trying to add money with different currency');
         }
 
-        return new this.constructor(money.amount + this.amount, this.currency);
+        return createMoney({ amount: money.amount + this.amount, currency: this.currency });
+    }
+};
+
+
+function createMoney({ amount = 0, currency }) {
+    errIfNotCurrency(currency);
+
+    return Object.freeze(Object.assign(Object.create(money), { amount, currency }));
+}
+
+
+function errIfNotCurrency(aCurrency) {
+    if (!aCurrency || !aCurrency.isCurrency) {
+        throw Error('Argument must be a Currency');
     }
 }
+
+
+export default createMoney;

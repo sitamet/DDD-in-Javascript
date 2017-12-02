@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "DDD-in-Javascript",
   "author": "dfvalero@gmail.com",
-  "repository":"https://github.com/dfvalero/Immutable/",
+  "repository": "https://github.com/dfvalero/Immutable/",
   "license": "UNLICENSED",
   "devDependencies": {
     "babel-core": "^6.24.1",

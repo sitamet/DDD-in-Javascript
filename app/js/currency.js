@@ -1,31 +1,36 @@
-let isoCode;
 
-function setIsoCode(anIsoCode) {
+let currency = {
+
+    isCurrency: true,
+
+    isoCode: null,
+
+    clonate () {
+        return createCurrency(this.isoCode);
+    },
+
+    equals (currency) {
+        return currency.isoCode === this.isoCode;
+    }
+};
+
+
+
+function createCurrency(anIsoCode) {
+
+    errIfNotIsoCode(anIsoCode);
+
+    let newCurrency = Object.create(currency);
+    newCurrency.isoCode = anIsoCode;
+
+    return Object.freeze(newCurrency);
+
+}
+
+function errIfNotIsoCode(anIsoCode) {
     if(!/^[A-Z]{3}$/.test(anIsoCode)) {
         throw Error('Bad ISO Code');
     }
-
-    isoCode = anIsoCode;
 }
 
-export default class Currency {
-    constructor(anIsoCode) {
-        setIsoCode(anIsoCode);
-
-        this.isoCode = this.isoCode();
-
-        Object.freeze(this);
-    }
-
-    isoCode() {
-        return isoCode;
-    }
-
-    static fromCurrency(aCurrency) {
-        return new this(aCurrency.isoCode);
-    }
-
-    equals(currency) {
-        return currency.isoCode === this.isoCode;
-    }
-}
+export default createCurrency;

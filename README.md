@@ -1,5 +1,20 @@
 # DDD in Javascript
 
+### Based on
+
+A refactored version of https://github.com/dfvalero/DDD-in-Javascript
+using Factory Functions instead of Class
+
+#### Why factory functions
+
+- easier refactoring
+- easier to read.
+- no more dangerous instanceof
+
+ 
+Learn more from Eric Elliott at [JavaScript Factory Functions vs Constructor Functions vs Classes](https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e)
+
+
 ### Explanation
 
 This repository is to share my DDD (Domain Driven Design) Knowledge while reading the book "Domain Driven Design in PHP" by [Carlos Buenosvinos](https://github.com/carlosbuenosvinos), [Christian Soronellas](https://github.com/theUniC) and [Keyvan Akbary](https://github.com/keyvanakbary).
